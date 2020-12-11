@@ -2,6 +2,10 @@
 name = "oled_shmoled"
 version = "0.1.0"
 authors = ["Nick Webster <nick@nick.geek.nz>"]
+description = "OLED displays don't have backlights but it'd be nice if we could pretend they do on Linux!"
+readme = "README.md"
+homepage = "https://github.com/NickGeek/oled-shmoled"
+repository = "https://github.com/NickGeek/oled-shmoled.git"
 license = "GPL-3.0"
 edition = "2018"
 categories = ["command-line-utilities"]
