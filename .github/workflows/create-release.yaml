@@ -29,8 +29,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v${{ steps.version_check_staging.outputs.releaseVersion }}
-        release_name: v${{ steps.version_check_staging.outputs.releaseVersion }}
+        tag_name: ${{ steps.version_check_staging.outputs.releaseVersion }}
+        release_name: ${{ steps.version_check_staging.outputs.releaseVersion }}
         draft: false
         prerelease: false
     - name: Upload binary to release
