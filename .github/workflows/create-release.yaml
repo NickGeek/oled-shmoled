@@ -14,11 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: cargo build --verbose
+      run: cargo build --verbose --release && strip target/release/oled_shmoled
     - name: Run tests
       run: cargo test --verbose
-    - name: Strip debug symbols
-      run: strip target/release/oled_shmoled
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -29,6 +27,16 @@ jobs:
         release_name: v${{ github.ref}}
         draft: false
         prerelease: false
+    - name: Upload binary to release
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: target/release/oled_shmoled
+        asset_name: oled_shmoled
+        asset_content_type: application/x-elf
     - name: Publish to crates.io
       run: |
           cargo login ${{ secrets.CRATES_IO_TOKEN }}
