@@ -2,7 +2,7 @@ use anyhow::Result;
 use clap::Clap;
 use notify::{raw_watcher, RecursiveMode, Watcher};
 use std::fs;
-use std::path::{Path};
+use std::path::Path;
 use std::sync::mpsc::channel;
 use std::process::Command;
 
@@ -44,10 +44,12 @@ fn update_brightness(opts: &Opts) -> Result<()> {
 
     let new_brightness = current_brightness / max_brightness;
 
-    Command::new("sh")
+    Command::new("xrandr")
         .args(&[
-            "-c",
-            format!("xrandr --output {} --brightness {}", opts.monitor_ident, new_brightness).as_str(),
+            "--output",
+            opts.monitor_ident.as_str(),
+            "--brightness",
+            new_brightness.to_string().as_str(),
         ])
         .spawn()
         .map_err(|err| anyhow!("Failed to set xrandr output: {}", err))?;
