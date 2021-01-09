@@ -53,6 +53,12 @@ Watching /sys/class/backlight/intel_backlight for backlight changes…
 The easiest way to use OLED Shmoled is to run that last command at start-up. This can be done by running it in an
 `.xinitrc` or a systemd job.
 
+On window managers like i3 you can add the following to your i3 configs to get the brightness keys working:
+```
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+```
+
 ## Build instructions
 ```
 $ git clone https://github.com/NickGeek/oled-shmoled oled_shmoled
