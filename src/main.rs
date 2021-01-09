@@ -51,7 +51,7 @@ fn update_brightness(opts: &Opts) -> Result<()> {
             "--brightness",
             new_brightness.to_string().as_str(),
         ])
-        .spawn()
+        .output()
         .map_err(|err| anyhow!("Failed to set xrandr output: {}", err))?;
 
     Ok(())
