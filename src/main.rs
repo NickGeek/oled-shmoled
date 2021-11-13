@@ -81,6 +81,10 @@ fn main() {
         .watch(&current_brightness_path, RecursiveMode::NonRecursive)
         .expect("Could not create a watcher.");
 
+    if let Err(e) = update_brightness(&opts) {
+        eprintln!("Error applying initial brightness: {}", e);
+    }
+
     println!("Watching {} for backlight changes…", opts.base_path);
     loop {
         match brightness_changes.recv() {
