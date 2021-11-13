@@ -1,7 +1,7 @@
 [package]
 name = "oled_shmoled"
-version = "0.1.3"
-authors = ["Nick Webster <nick@nick.geek.nz>"]
+version = "0.2.0"
+authors = ["Nick Webster <nick@nick.geek.nz>", "voidshine <https://github.com/voidshine>"]
 description = "OLED displays don't have backlights but it'd be nice if we could pretend they do on Linux!"
 readme = "README.md"
 homepage = "https://github.com/NickGeek/oled-shmoled"
