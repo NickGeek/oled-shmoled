@@ -1,17 +1,18 @@
 use anyhow::Result;
-use clap::Clap;
+use clap::Parser;
 use notify::{raw_watcher, RecursiveMode, Watcher};
 use std::fs;
 use std::path::Path;
 use std::sync::mpsc::channel;
 use std::process::Command;
+use const_str;
 
 #[macro_use] extern crate anyhow;
 
-const VERSION: &'static str = env!("CARGO_PKG_VERSION");
-const AUTHORS: &'static str = env!("CARGO_PKG_AUTHORS");
+const VERSION: &str = env!("CARGO_PKG_VERSION");
+const AUTHORS: &str = const_str::replace!(env!("CARGO_PKG_AUTHORS"), ":", ", ");
 
-#[derive(Clap, Debug)]
+#[derive(clap::Parser, Debug)]
 #[clap(name = "OLED shmoled", version = VERSION, author = AUTHORS)]
 struct Opts {
     /// The xrandr identifier for the display
